@@ -1,0 +1,141 @@
+﻿<Page
+    x:Class="PoorLamportTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PoorLamportTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Model="using:PoorLamportTest.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Margin="30,20,30,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Poor Lamport" Style="{ThemeResource HeaderTextBlockStyle}" />
+
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Proceso 1" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <Grid Grid.Row="1" Margin="0,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" x:Name="cbSendTo1" Tag="1">
+                        <ComboBoxItem Content="P2" IsSelected="True" Tag="2"/>
+                        <ComboBoxItem Content="P3" Tag="3" />
+                    </ComboBox>
+
+                    <TextBox Grid.Column="1" x:Name="txtMessage1" Margin="5,0,5,0" />
+
+                    <Button Grid.Column="2" x:Name="btnSendMessage1" Content="Enviar" Click="btnSendMessage_Click" Tag="1" />
+                </Grid>
+                
+                <ListView Grid.Row="2" ItemsSource="{x:Bind MessageItems1}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="Model:Message">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind Parent.ID}" />
+                                <TextBlock Text=":"/>
+                                <TextBlock Text="{x:Bind Text}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Proceso 2" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <Grid Grid.Row="1" Margin="0,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" x:Name="cbSendTo2" Tag="2">
+                        <ComboBoxItem Content="P1" IsSelected="True" Tag="1" />
+                        <ComboBoxItem Content="P3" Tag="3" />
+                    </ComboBox>
+
+                    <TextBox Grid.Column="1" x:Name="txtMessage2" Margin="5,0,5,0" />
+
+                    <Button Grid.Column="2" x:Name="btnSendMessage2" Content="Enviar" Tag="2" Click="btnSendMessage2_Click" />
+                </Grid>
+
+                <ListView Grid.Row="2" ItemsSource="{x:Bind MessageItems2}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="Model:Message">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind Parent.ID}" />
+                                <TextBlock Text=":"/>
+                                <TextBlock Text="{x:Bind Text}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Proceso 3" Style="{ThemeResource SubheaderTextBlockStyle}" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox Grid.Column="0" x:Name="cbSendTo3" Tag="3">
+                        <ComboBoxItem Content="P1" IsSelected="True" Tag="1" />
+                        <ComboBoxItem Content="P2" Tag="2" />
+                    </ComboBox>
+
+                    <TextBox Grid.Column="1" x:Name="txtMessage3" Margin="5,0,5,0" />
+
+                    <Button Grid.Column="2" x:Name="btnSendMessage3" Content="Enviar" Tag="3" Click="btnSendMessage3_Click" />
+                </Grid>
+
+                <ListView Grid.Row="2" ItemsSource="{x:Bind MessageItems3}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="Model:Message">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{x:Bind Parent.ID}" />
+                                <TextBlock Text=":"/>
+                                <TextBlock Text="{x:Bind Text}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
